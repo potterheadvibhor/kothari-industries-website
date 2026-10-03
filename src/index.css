@@ -1,0 +1,147 @@
+/* Layout concept: the brochure's diagonal "K" cut is the one loud device
+   (hero mosaic, photo edges); everything else is a quiet left-aligned grid
+   with the brochure's tab-and-frame product cards. */
+
+@import '@fontsource/teko/latin-500.css';
+@import '@fontsource/teko/latin-600.css';
+@import '@fontsource/hind/latin-400.css';
+@import '@fontsource/hind/latin-500.css';
+@import '@fontsource/hind/latin-600.css';
+@import 'tailwindcss';
+
+@theme {
+  /* Colours sampled from the products catalogue */
+  --color-brand: #f0770f; /* catalogue orange */
+  --color-brand-ink: #e56a00; /* orange for large headlines on white */
+  --color-brand-dark: #b85404; /* orange for small text on white */
+  --color-slate: #313945; /* catalogue charcoal */
+  --color-slate-deep: #232a34;
+  --color-slate-soft: #5b6472; /* body copy */
+  --color-paper: #f1f1f1; /* catalogue page grey */
+  --color-line: #d9dce1;
+  --color-white: #ffffff;
+
+  --font-display: 'Teko', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --font-sans: 'Hind', 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-slate);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Page gutter + width, set once */
+  .wrap {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Catalogue headline: Teko, uppercase, tight */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.55rem 1.4rem 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.15s,
+      color 0.15s,
+      box-shadow 0.15s;
+  }
+  .btn-primary {
+    background: var(--color-brand);
+    color: var(--color-slate-deep);
+    box-shadow: 5px 5px 0 var(--color-slate);
+  }
+  .btn-primary:hover {
+    box-shadow: 2px 2px 0 var(--color-slate);
+  }
+  .btn-dark {
+    background: var(--color-slate);
+    color: var(--color-white);
+  }
+  .btn-dark:hover {
+    background: var(--color-slate-deep);
+  }
+  .btn-outline {
+    border: 2px solid var(--color-slate);
+    color: var(--color-slate);
+  }
+  .btn-outline:hover {
+    background: var(--color-slate);
+    color: var(--color-white);
+  }
+
+  /* The catalogue's label tab that sits on top of a framed photo */
+  .tab {
+    display: inline-block;
+    background: var(--color-brand);
+    color: var(--color-slate-deep);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    line-height: 1.1;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.8rem 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
