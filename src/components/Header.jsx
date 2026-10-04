@@ -6,7 +6,7 @@ export default function Header() {
   const [open, setOpen] = useState(false)
 
   const linkClass = ({ isActive }) =>
-    `display block px-3 pt-2 pb-1 text-[1.35rem] font-medium tracking-wide border-b-[3px] ${
+    `display block px-2.5 pt-2 pb-1 text-[1.3rem] xl:px-3 xl:text-[1.35rem] font-medium tracking-wide border-b-[3px] ${
       isActive
         ? 'border-brand text-slate-deep'
         : 'border-transparent text-slate hover:border-line'
@@ -16,7 +16,7 @@ export default function Header() {
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-40 bg-white shadow-[0_1px_0_var(--color-line)]">
       <div className="bg-slate-deep text-white">
         <div className="wrap flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-1.5 text-[0.9rem]">
-          <span className="hidden sm:inline">{company.iso} certified company</span>
+          <span className="hidden md:inline">{company.certified}</span>
           <span className="flex flex-wrap items-center gap-x-5 gap-y-1">
             <span>
               Helpline{' '}

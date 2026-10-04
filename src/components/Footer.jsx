@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom'
-import { company, img, locations, nav } from '../data/site.js'
+import { company, img, locations, nav, offices } from '../data/site.js'
 
 const YEAR = new Date().getFullYear()
 
 export default function Footer() {
-  const offices = locations.slice(0, 2)
-  const units = locations.slice(2)
+  const corporate = locations[0]
 
   return (
     <footer className="bg-slate-deep text-white/80">
       <div className="wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.1fr_1.4fr_1fr_0.7fr]">
         <div className="flex flex-col items-start gap-5">
-          <div className="">
+          <div className="bg-white p-4">
             <img
               src={img('logo-full.png')}
               alt="Kothari Industries, Manilal & Brothers Group"
@@ -23,30 +22,29 @@ export default function Footer() {
           </div>
           <p className="max-w-xs text-[0.95rem]">
             Industrial fasteners, scaffolding materials and holding down bolts since{' '}
-            {company.founded}. {company.iso} certified.
+            {company.founded}. {company.certified}.
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {offices.map((o) => (
-            <address key={o.label} className="not-italic text-[0.95rem]">
-              <h2 className="display mb-1 text-2xl font-medium text-white">{o.label}</h2>
-              {o.lines.map((l) => (
-                <span key={l} className="block">
-                  {l}
-                </span>
-              ))}
-            </address>
-          ))}
-          <div className="text-[0.95rem] sm:col-span-2">
-           
+        <div className="grid gap-6 text-[0.95rem]">
+          <address className="not-italic">
+            <h2 className="display mb-1 text-2xl font-medium text-white">{corporate.label}</h2>
+            {corporate.lines.map((l) => (
+              <span key={l} className="block">
+                {l}
+              </span>
+            ))}
+          </address>
+          <div>
+            <h2 className="display mb-1 text-2xl font-medium text-white">Offices</h2>
             <ul className="flex flex-col gap-0.5">
-              {units.map((u) => (
-                <li key={u.label}>
-                  {u.label}: {u.lines.join(', ')}
-                </li>
+              {offices.map((o) => (
+                <li key={o.label}>{o.label}</li>
               ))}
             </ul>
+            <Link to="/contact" className="mt-1 inline-block text-brand hover:underline">
+              Addresses and phone numbers
+            </Link>
           </div>
         </div>
 
@@ -70,6 +68,7 @@ export default function Footer() {
               {company.email}
             </a>
           </p>
+          <p className="break-all">{company.website}</p>
         </div>
 
         <nav aria-label="Footer" className="text-[0.95rem]">

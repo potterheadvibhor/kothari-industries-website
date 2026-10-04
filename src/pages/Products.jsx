@@ -15,9 +15,9 @@ export default function Products() {
 
   return (
     <>
-      <PageHeader lines={['Our manufacturing', 'product range.']}>
-        Foundation bolts, scaffolding systems, anchors, clamps and screws. Choose a category, or
-        ask about any item for sizes, grades and prices.
+      <PageHeader lines={['Manufacturing', 'products range.']}>
+        Quality and strength you can rely on. Choose a category, or ask about any item for sizes,
+        grades and prices.
       </PageHeader>
 
       <div className="wrap py-10">

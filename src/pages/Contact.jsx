@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import PageHeader from '../components/PageHeader.jsx'
-import { company, locations } from '../data/site.js'
+import { company, locations, offices } from '../data/site.js'
 
 const mapUrl = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`
 
@@ -114,6 +114,8 @@ export default function Contact() {
                   {company.email}
                 </a>
               </dd>
+              <dt className="font-medium text-slate">Website</dt>
+              <dd className="break-all text-slate-soft">{company.website}</dd>
             </dl>
           </section>
 
@@ -146,10 +148,33 @@ export default function Contact() {
               ))}
             </ul>
           </section>
+
+          <section aria-labelledby="offices-h">
+            <h2 id="offices-h" className="display text-4xl text-slate">
+              Offices
+            </h2>
+            <ul className="mt-4 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              {offices.map((o) => (
+                <li key={o.label} className="border-l-4 border-blue pl-4">
+                  <h3 className="font-semibold text-slate">{o.label}</h3>
+                  <address className="not-italic text-slate-soft">
+                    {o.lines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </address>
+                  <p className="mt-1 tabular-nums text-slate">
+                    <span className="font-medium">Mobile</span> {o.mobiles.join(' / ')}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
 
         {/* Enquiry form */}
-        <section aria-labelledby="form-h" className="bg-paper p-6 md:p-9">
+        <section aria-labelledby="form-h" className="self-start bg-paper p-6 md:p-9">
           <h2 id="form-h" className="display text-4xl text-slate">
             Send an enquiry
           </h2>
