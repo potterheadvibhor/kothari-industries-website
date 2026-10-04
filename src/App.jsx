@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Products from './pages/Products.jsx'
 import Brands from './pages/Brands.jsx'
+import Projects from './pages/Projects.jsx'
 import Quality from './pages/Quality.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/brands" element={<Brands />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/quality" element={<Quality />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

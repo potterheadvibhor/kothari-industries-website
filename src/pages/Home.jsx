@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom'
 import Heading from '../components/Heading.jsx'
-import { about, brands, categories, clients, company, img, stats } from '../data/site.js'
+import {
+  about,
+  categories,
+  channelPartners,
+  clients,
+  company,
+  headlineStats,
+  img,
+  industries,
+  projects,
+  testimonials,
+} from '../data/site.js'
 
 // The four cover photos, split by the "K" chevron from the logo.
 function HeroMosaic() {
@@ -51,8 +62,8 @@ export default function Home() {
             </h1>
             <p className="mt-5 max-w-xl text-lg text-slate-soft">
               Industrial fasteners, scaffolding materials, holding down bolts and construction
-              hardware from {company.group}. Manufacturing since {company.founded}, {company.iso}{' '}
-              certified.
+              hardware from {company.group}. Manufacturing since {company.founded}.{' '}
+              {company.certified}.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link to="/products" className="btn btn-primary">
@@ -67,10 +78,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Figures from the catalogue */}
+      {/* Figures from the brochure */}
       <section aria-label="Kothari Industries in numbers" className="bg-slate text-white">
         <dl className="wrap grid grid-cols-2 gap-x-6 gap-y-6 py-8 md:grid-cols-4">
-          {stats.map((s) => (
+          {headlineStats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse justify-end border-l-4 border-brand pl-4">
               <dt className="text-[0.95rem] text-white/75">{s.label}</dt>
               <dd className="display text-5xl tabular-nums md:text-6xl">{s.value}</dd>
@@ -82,7 +93,7 @@ export default function Home() {
       {/* Product range */}
       <section className="wrap py-16 md:py-20">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <Heading lines={['Our manufacturing', 'product range.']} />
+          <Heading lines={['Manufacturing', 'products range.']} />
           <Link to="/products" className="btn btn-dark">
             All {categories.reduce((n, c) => n + c.items.length, 0)} products
           </Link>
@@ -112,7 +123,7 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* About */}
+      {/* Our story */}
       <section className="bg-slate-deep text-white">
         <div className="grid lg:grid-cols-2">
           <img
@@ -130,45 +141,93 @@ export default function Home() {
               to="/about"
               className="btn mt-8 border-2 border-white text-white hover:bg-white hover:text-slate-deep"
             >
-              About the group
+              Our story
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Dealerships */}
+      {/* Recent projects */}
       <section className="wrap py-16 md:py-20">
-        <Heading lines={['Joining hands with', 'the best in the industry.']} />
-        <p className="mt-4 max-w-2xl text-slate-soft">
-          Kothari Industries is an authorised dealer for eight brands, covering anchors and
-          chemicals, pipes, power tools and light construction equipment.
-        </p>
-        <ul className="mt-8 grid grid-cols-2 border-l border-t border-line md:grid-cols-4">
-          {brands.map((b) => (
-            <li key={b.id} className="border-b border-r border-line">
-              <Link
-                to={`/brands?brand=${b.id}`}
-                className="display block px-4 pb-4 pt-6 text-center text-3xl font-medium text-slate hover:bg-brand hover:text-slate-deep md:text-4xl"
-              >
-                {b.name}
-              </Link>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <Heading lines={['Our recent', 'projects.']} />
+          <Link to="/projects" className="btn btn-dark">
+            All projects
+          </Link>
+        </div>
+        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {projects.slice(0, 4).map((p) => (
+            <li key={p.name}>
+              <img
+                src={img(p.image)}
+                alt=""
+                width="600"
+                height="522"
+                loading="lazy"
+                className="chamfer aspect-[4/3] w-full object-cover"
+              />
+              <h3 className="display mt-3 text-2xl font-medium text-slate">{p.name}</h3>
+              <p className="text-[0.95rem] text-slate-soft">{p.supplied}</p>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="display mt-14 text-3xl text-slate">Major industries we serve</h3>
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {industries.map((i) => (
+            <li key={i} className="border border-line bg-paper px-3 py-1.5 text-[0.95rem] font-medium text-slate">
+              {i}
             </li>
           ))}
         </ul>
       </section>
 
-      {/* Clients */}
+      {/* Dealerships */}
       <section className="bg-paper">
         <div className="wrap py-16 md:py-20">
-          <Heading lines={['Our esteemed', 'clients.']} />
-          <ul className="mt-8 grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
-            {clients.map((c) => (
-              <li key={c} className="border-b border-line py-3 font-medium text-slate">
-                {c}
+          <Heading lines={['Authorized dealer for trusted', 'and authentic products.']} />
+          <p className="mt-4 max-w-2xl text-slate-soft">
+            Our channel partners, alongside pipes, pipe fittings, electrical goods and cables.
+          </p>
+          <ul className="mt-8 grid grid-cols-2 border-l border-t border-line bg-white md:grid-cols-4">
+            {channelPartners.map((b) => (
+              <li key={b.id} className="border-b border-r border-line">
+                <Link
+                  to={`/brands?brand=${b.id}`}
+                  className="display block px-4 pb-4 pt-6 text-center text-3xl font-medium text-slate hover:bg-brand hover:text-slate-deep md:text-4xl"
+                >
+                  {b.name}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
+      </section>
+
+      {/* Clients and what they say */}
+      <section className="wrap py-16 md:py-20">
+        <Heading lines={['Our', 'clients.']} />
+        <ul className="mt-8 grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+          {clients.map((c) => (
+            <li key={c} className="border-b border-line py-3 font-medium text-slate">
+              {c}
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="display mt-16 text-3xl text-slate md:text-4xl">
+          Trusted feedback from valued industry partners
+        </h3>
+        <ul className="mt-6 grid gap-6 lg:grid-cols-3">
+          {testimonials.map((t) => (
+            <li key={t.from} className="flex">
+              <figure className="flex flex-col justify-between gap-5 border-l-4 border-brand bg-paper p-6">
+                <blockquote className="text-slate">“{t.text}”</blockquote>
+                <figcaption className="display text-2xl font-medium text-slate">{t.from}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Enquiry band */}

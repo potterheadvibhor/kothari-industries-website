@@ -21,10 +21,12 @@ works from a sub-folder. No rewrite rules are required.
 
 | What | Where |
 | --- | --- |
-| Phone numbers, email, addresses | `src/data/site.js` → `company`, `locations` |
+| Phone numbers, email, addresses | `src/data/site.js` → `company`, `locations`, `offices` |
 | Products and categories | `src/data/site.js` → `categories` |
-| Dealer brands and their products | `src/data/site.js` → `brands` |
-| Client list, awards, about and quality text | `src/data/site.js` |
+| Channel partners and their products | `src/data/site.js` → `brands`, `supplyLines` |
+| Projects, Nal Jal Yojana, industries | `src/data/site.js` → `projects`, `nalJal`, `industries` |
+| Story, values, leadership, team, timeline | `src/data/site.js` → `about`, `values`, `leaders`, `team`, `timeline` |
+| Clients, testimonials, awards, quality text | `src/data/site.js` |
 | Product photos | `public/images/products/` and `public/images/brands/<brand>/` |
 | Colours and fonts | `src/index.css` → `@theme` |
 
@@ -32,6 +34,12 @@ A product photo is found by its name: "Foundation Bolts" loads
 `public/images/products/foundation-bolts.webp`. To add a product, add its
 name to the list and save a photo with the matching file name
 (about 560 x 400 px or larger).
+
+## Where the content comes from
+
+Company text, figures, projects, awards, team and contact details follow the
+2025 company brochure. The detailed product lists and their photos come from
+the earlier products catalogue.
 
 ## Enquiry form
 
@@ -42,5 +50,5 @@ a form service (Formspree, Web3Forms and similar) and replace the body of
 
 ## Pages
 
-`src/pages/` has one file per page: Home, About, Products, Brands, Quality,
-Contact. The header and footer are in `src/components/`.
+`src/pages/` has one file per page: Home, About, Products, Brands, Projects,
+Quality, Contact. The header and footer are in `src/components/`.
