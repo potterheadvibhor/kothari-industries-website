@@ -18,7 +18,7 @@ export const company = {
   tagline: 'Products that last.',
   helpline: '+91 90385 50000',
   helplineHref: 'tel:+919038550000',
-  phones: ['033 4024 5757', '033 4007 5757', '033 4064 3385'],
+  phones: ['033 7134 2200', '033 4604 3385'],
   email: 'kothari.mkt@gmail.com',
   website: 'www.kothariindustries.org',
   iso: 'ISO 9001:2015',
@@ -31,13 +31,10 @@ export const locations = [
     map: 'Security House, 23B Netaji Subhas Road, Kolkata 700001',
   },
   {
-    label: 'Showroom',
+    label: 'Offices',
     lines: ['33/1, Netaji Subhas Road', 'Marshal House, Ground Floor', 'Kolkata - 700 001'],
     map: 'Marshal House, 33/1 Netaji Subhas Road, Kolkata 700001',
   },
-  { label: 'Unit 1', lines: ['Near Tikiapara Railway Station', 'Howrah'] },
-  { label: 'Unit 2', lines: ['Benaras Road', 'Howrah'] },
-  { label: 'Unit 3', lines: ['Chamrail', 'Howrah'] },
 ]
 
 // Years in business is worked out from the founding year, rounded down to 5.
@@ -87,6 +84,19 @@ export const leaders = [
       'A warm welcome to Kothari Industries. It gives me immense pleasure and pride to be a part of this visionary group that understands the pulse of local economy and serves this country through a wide array of products.',
       'For a world that is moving and growing rapidly, being agile and inventive is a necessity. At Kothari Industries, we embrace this necessity as an opportunity. We are continuously working towards improving the quality of our products to make sure that our customers get the best. By encouraging out-of-the-box thinking and tenacity at workplace, we make sure that our employees (both on shop floor and top floor) feel inspired to put their best foot forward.',
       'Through our values and virtues, the group company continues to be recognized for its integrity and we look forward to carry on this legacy into the future.',
+    ],
+  },
+    {
+    name: 'Mr. Kanti Lal Kothari',
+    role: 'Director',
+    photo: 'photos/kanti-lal-kothari.webp',
+    headline: ['Striving for excellence,', 'building a legacy of quality.'],
+    quote:
+      'Our approach is rooted in honesty, fairness and a genuine commitment to the growth and well-being of everyone we work with, from clients and partners to employees and communities.',
+    paragraphs: [
+      'Kothari Industries, a part of the Manilal and Brothers Group, is guided by the core values of quality, trust and innovation. We specialize in high-performance industrial hardware solutions that help industries build strong, reliable and lasting structures.',
+      'A structure is only as dependable as the parts that hold it together. That is why every fastener, anchor and scaffolding component we supply passes through quality checks at each stage, backed by our ISO 9001:2015 certification. Our customers build with confidence because we do not compromise on what goes into their projects.',
+      'The trust our customers have placed in us since 1955 is what we value most. We intend to keep earning it through dependable products, fair dealings and service that people can count on, and to pass on a legacy of quality to those who build with us next.',
     ],
   },
 ]

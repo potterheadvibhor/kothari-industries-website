@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-slate-deep text-white/80">
       <div className="wrap grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.1fr_1.4fr_1fr_0.7fr]">
         <div className="flex flex-col items-start gap-5">
-          <div className="bg-white p-4">
+          <div className="">
             <img
               src={img('logo-full.png')}
               alt="Kothari Industries, Manilal & Brothers Group"
@@ -39,7 +39,7 @@ export default function Footer() {
             </address>
           ))}
           <div className="text-[0.95rem] sm:col-span-2">
-            <h2 className="display mb-1 text-2xl font-medium text-white">Howrah units</h2>
+           
             <ul className="flex flex-col gap-0.5">
               {units.map((u) => (
                 <li key={u.label}>
