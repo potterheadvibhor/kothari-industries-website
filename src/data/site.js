@@ -687,10 +687,10 @@ export const memberships = [
 
 export const nav = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
   { to: '/products', label: 'Products' },
-  { to: '/brands', label: 'Brands' },
   { to: '/projects', label: 'Projects' },
+  { to: '/brands', label: 'Brands' },
   { to: '/quality', label: 'Quality' },
+  { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
