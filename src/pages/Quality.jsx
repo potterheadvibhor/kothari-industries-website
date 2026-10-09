@@ -5,7 +5,7 @@ import { awards, img, memberships, quality, qualityPlan, whyUs } from '../data/s
 export default function Quality() {
   return (
     <>
-      <PageHeader lines={quality.headline} />
+      <PageHeader lines={quality.headline} image="photos/scaffold-grid.webp" />
 
       {/* Quality assurance and certifications */}
       <section className="wrap py-16">
@@ -16,8 +16,8 @@ export default function Quality() {
           ))}
         </div>
         <ul className="mt-10 grid grid-cols-2 border-l border-t border-line lg:grid-cols-4">
-          {quality.certifications.map((c) => (
-            <li key={c.name} className="border-b border-r border-line p-6">
+          {quality.certifications.map((c, i) => (
+            <li key={c.name} data-reveal data-delay={String(i * 100)} className="border-b border-r border-line p-6">
               <span className="display block text-4xl text-blue-dark md:text-5xl">{c.name}</span>
               <span className="text-slate-soft">{c.text}</span>
             </li>
@@ -28,13 +28,13 @@ export default function Quality() {
       {/* Quality assurance plan */}
       <section className="bg-paper">
         <div className="wrap grid items-center gap-12 py-16 md:py-20 lg:grid-cols-2 lg:gap-16">
-          <div className="relative">
+          <div data-reveal="left" className="relative">
             <div className="absolute -bottom-3 -right-3 left-6 top-6 border-2 border-brand" aria-hidden="true" />
             <img
               src={img('photos/scaffolders.webp')}
               alt="Workers assembling orange scaffolding against a blue sky"
-              width="1200"
-              height="807"
+              width="1339"
+              height="1039"
               loading="lazy"
               className="relative w-full"
             />
@@ -48,8 +48,8 @@ export default function Quality() {
             </div>
           </div>
           <ul className="grid gap-6 md:grid-cols-2 lg:col-span-2">
-            {qualityPlan.points.map((p) => (
-              <li key={p.name} className="bg-white">
+            {qualityPlan.points.map((p, i) => (
+              <li key={p.name} data-reveal data-delay={String(i * 150)} className="bg-white">
                 <h3 className="display chamfer bg-blue px-5 pb-1.5 pt-3 text-2xl font-medium text-white">
                   {p.name}
                 </h3>
@@ -69,9 +69,11 @@ export default function Quality() {
           ))}
         </div>
         <ul className="mt-8 grid grid-cols-2 gap-px bg-line sm:grid-cols-3 lg:grid-cols-5">
-          {whyUs.points.map((p) => (
+          {whyUs.points.map((p, i) => (
             <li
               key={p}
+              data-reveal="zoom"
+              data-delay={String(i * 100)}
               className="display bg-white px-4 pb-4 pt-6 text-center text-2xl font-medium text-brand-dark"
             >
               {p}
@@ -85,13 +87,13 @@ export default function Quality() {
         <div className="wrap py-16 md:py-20">
           <Heading lines={['Awards', 'and accolades.']} />
           <ul className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
-            {awards.map((a) => (
-              <li key={a.image} className="flex flex-col">
+            {awards.map((a, i) => (
+              <li key={a.image} data-reveal data-delay={String((i % 4) * 100)} className="flex flex-col">
                 <img
                   src={img(a.image)}
                   alt=""
                   loading="lazy"
-                  className="chamfer-deep aspect-square w-full bg-white object-cover"
+                  className="chamfer aspect-square w-full bg-white object-cover"
                 />
                 <p className="flex flex-1 flex-col border-b-[6px] border-brand bg-slate px-4 py-4 text-white">
                   <span className="display text-2xl font-medium leading-none">{a.name}</span>

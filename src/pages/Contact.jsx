@@ -75,7 +75,7 @@ export default function Contact() {
 
   return (
     <>
-      <PageHeader lines={['Contact us.']}>
+      <PageHeader lines={['Contact us.']} image="photos/sea-link.webp">
         Tell us what you need and where it is going. We will come back with availability and a
         quotation.
       </PageHeader>
@@ -83,7 +83,7 @@ export default function Contact() {
       <div className="wrap grid gap-14 py-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
         {/* Details */}
         <div className="flex flex-col gap-10">
-          <section aria-labelledby="reach-h">
+          <section data-reveal aria-labelledby="reach-h">
             <h2 id="reach-h" className="display text-4xl text-slate">
               Call or write
             </h2>
@@ -106,12 +106,26 @@ export default function Contact() {
                 ))}
               </dd>
               <dt className="font-medium text-slate">Email</dt>
+              <dd className="flex flex-col">
+                {[company.email, company.supportEmail].map((e) => (
+                  <a
+                    key={e}
+                    href={`mailto:${e}`}
+                    className="break-all text-brand-dark underline decoration-1 underline-offset-4"
+                  >
+                    {e}
+                  </a>
+                ))}
+              </dd>
+              <dt className="font-medium text-slate">WhatsApp</dt>
               <dd>
                 <a
-                  href={`mailto:${company.email}`}
-                  className="break-all text-brand-dark underline decoration-1 underline-offset-4"
+                  href={`https://wa.me/${company.whatsapp}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-brand-dark underline decoration-1 underline-offset-4"
                 >
-                  {company.email}
+                  Chat on {company.helpline}
                 </a>
               </dd>
               <dt className="font-medium text-slate">Website</dt>
@@ -119,7 +133,7 @@ export default function Contact() {
             </dl>
           </section>
 
-          <section aria-labelledby="where-h">
+          <section data-reveal aria-labelledby="where-h">
             <h2 id="where-h" className="display text-4xl text-slate">
               Where to find us
             </h2>
@@ -149,7 +163,7 @@ export default function Contact() {
             </ul>
           </section>
 
-          <section aria-labelledby="offices-h">
+          <section data-reveal aria-labelledby="offices-h">
             <h2 id="offices-h" className="display text-4xl text-slate">
               Offices
             </h2>
@@ -174,7 +188,7 @@ export default function Contact() {
         </div>
 
         {/* Enquiry form */}
-        <section aria-labelledby="form-h" className="self-start bg-paper p-6 md:p-9">
+        <section data-reveal="right" aria-labelledby="form-h" className="self-start bg-paper p-6 md:p-9">
           <h2 id="form-h" className="display text-4xl text-slate">
             Send an enquiry
           </h2>

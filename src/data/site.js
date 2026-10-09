@@ -1,6 +1,7 @@
 // All site content lives here so it can be edited without touching layout code.
-// Company text comes from the 2025 Kothari Industries brochure. The detailed
-// product lists and their photos come from the earlier products catalogue.
+// Company text and most photos come from the Kothari Industries company profile
+// (July 2025 edition). The detailed product lists and some product photos come
+// from the earlier products catalogue.
 
 const BASE = import.meta.env.BASE_URL
 export const img = (path) => `${BASE}images/${path}`
@@ -19,9 +20,13 @@ export const company = {
   tagline: 'Products that last.',
   helpline: '+91 90385 50000',
   helplineHref: 'tel:+919038550000',
-  phones: ['033 4604 3385', '033 7134 2200'],
+  phones: ['033 4024 5757', '033 4007 5757', '033 4064 3385'],
   email: 'kothari.mkt@gmail.com',
-  website: 'www.kothariindustries.in',
+  supportEmail: 'support@kothariindustries.net.in',
+  website: 'www.kothariindustries.org',
+  // Floating WhatsApp button: number in international format, digits only
+  whatsapp: '919038550000',
+  whatsappMessage: 'Hello Kothari Industries, I would like to enquire about your products.',
   // Short line for the header strip and footer
   certified: 'ISO 9001:2015, ISO 14001 and ISO 45001 certified',
 }
@@ -84,7 +89,7 @@ const years = Math.floor((new Date().getFullYear() - company.founded) / 5) * 5
 export const headlineStats = [
   { value: `${years}+`, label: 'Years of trust' },
   { value: '300+', label: 'Satisfied customers' },
-  { value: '200+', label: 'Completed projects' },
+  { value: '100+', label: 'Completed projects' },
   { value: '100+', label: 'Products in the range' },
 ]
 
@@ -95,7 +100,7 @@ export const stats = [
   { value: '25+', label: 'Awards and accolades' },
   { value: '100+', label: 'Product range' },
   { value: '40+', label: 'Workforce size' },
-  { value: '200+', label: 'Completed projects' },
+  { value: '100+', label: 'Completed projects' },
   { value: '3+', label: 'Manufacturing units' },
   { value: '10+', label: 'Distribution network' },
   { value: '20+', label: 'Industries served' },
@@ -164,6 +169,7 @@ export const leaders = [
     name: 'Mr. Kanti Lal Kothari',
     role: 'Director',
     photo: 'photos/kanti-lal-kothari.webp',
+    square: true,
     headline: ['Striving for excellence,', 'building a legacy of quality.'],
     paragraphs: [
       'Kothari Industries, a part of the Manilal and Brothers Group, is guided by the core values of quality, trust and innovation. We specialize in high-performance industrial hardware solutions that help industries build strong, reliable and lasting structures. Our approach is rooted in honesty, fairness and a genuine commitment to the growth and well-being of everyone we work with, from clients and partners to employees and communities.',
@@ -279,6 +285,11 @@ export const vision2030 = {
   ],
 }
 
+export const oneTeam = {
+  words: ['Voice', 'Team', 'Dream'],
+  text: 'When voices unite, teams align and dreams ignite, extraordinary becomes possible. At Kothari Industries, we believe that shared vision fuels unmatched excellence. Driven by One Voice, One Team, One Dream we move forward with purpose, passion and performance.',
+}
+
 export const csr = {
   headline: ['Rooted in responsibility,', 'growing with communities.'],
   paragraphs: [
@@ -312,12 +323,10 @@ const item = (folder) => (entry) => {
   return { name, image: `${folder}/${file}.webp` }
 }
 
-const range = (id, name, blurb, items) => ({
-  id,
-  name,
-  blurb,
-  items: items.map(item('products')),
-})
+const range = (id, name, blurb, items, cover) => {
+  const list = items.map(item('products'))
+  return { id, name, blurb, items: list, cover: cover ?? list[0].image }
+}
 
 export const categories = [
   range(
@@ -365,6 +374,7 @@ export const categories = [
       'Hilti Anchors',
       'Hilti Capsule Chemical',
     ],
+    'products/anchor-bolts.webp',
   ),
   range('clamps', 'Clamps and screws', 'Cladding clamps, pipe clamps, screws and rack bolts.', [
     'Marble Clamp',
@@ -381,6 +391,7 @@ export const categories = [
 const brand = (name, items) => ({
   id: slug(name),
   name,
+  banner: `dealers/${slug(name)}.webp`,
   items: items.map(item(`brands/${slug(name)}`)),
 })
 

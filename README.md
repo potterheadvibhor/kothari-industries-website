@@ -37,9 +37,33 @@ name to the list and save a photo with the matching file name
 
 ## Where the content comes from
 
-Company text, figures, projects, awards, team and contact details follow the
-2025 company brochure. The detailed product lists and their photos come from
+Company text, figures, projects, awards, team, contact details and most
+photos follow the company profile brochure (July 2025 edition). The detailed product lists and their photos come from
 the earlier products catalogue.
+
+## WhatsApp and call buttons
+
+The round buttons in the bottom-right corner appear on every page. They use
+`company.whatsapp` (digits only, with country code), `company.whatsappMessage`
+(the message WhatsApp opens with) and `company.helpline` in `src/data/site.js`.
+The buttons themselves are in `src/components/QuickContact.jsx`.
+
+## Animations
+
+Headings rise into place word by word, blocks fade in as you scroll, and
+figures such as "300+" count up. All of it is in `src/lib/motion.js` and the
+"Motion" part of `src/index.css`; no extra library is needed.
+
+To animate something, add an attribute to it:
+
+| Attribute | Effect |
+| --- | --- |
+| `data-reveal` | fades and slides up (`"left"`, `"right"` or `"zoom"` for other directions) |
+| `data-delay="200"` | waits 100 to 600 ms first, for staggered rows |
+| `data-count` | counts the number in the text up from zero |
+
+Headings made with the `Heading` component animate on their own. Visitors who
+turn on "reduce motion" on their device see everything still and in place.
 
 ## Enquiry form
 

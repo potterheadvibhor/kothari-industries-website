@@ -15,7 +15,7 @@ export default function Products() {
 
   return (
     <>
-      <PageHeader lines={['Manufacturing', 'products range.']}>
+      <PageHeader lines={['Manufacturing', 'products range.']} image="photos/tower-crane.webp">
         Quality and strength you can rely on. Choose a category, or ask about any item for sizes,
         grades and prices.
       </PageHeader>
@@ -42,7 +42,7 @@ export default function Products() {
         <div className="mt-12 flex flex-col gap-16">
           {shown.map((c) => (
             <section key={c.id} aria-labelledby={`cat-${c.id}`}>
-              <div className="border-l-4 border-brand pl-4">
+              <div data-reveal="left" className="border-l-4 border-brand pl-4">
                 <h2 id={`cat-${c.id}`} className="display text-4xl text-slate md:text-5xl">
                   {c.name}
                 </h2>

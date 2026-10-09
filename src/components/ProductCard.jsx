@@ -4,7 +4,7 @@ import { img } from '../data/site.js'
 // The catalogue card: an orange name tab sitting on a framed photo.
 export default function ProductCard({ name, image, enquiry }) {
   return (
-    <li className="flex flex-col">
+    <li data-reveal className="flex flex-col">
       <h3 className="tab self-start">{name}</h3>
       <div className="border border-brand bg-white shadow-[6px_6px_0_var(--color-paper)]">
         <img

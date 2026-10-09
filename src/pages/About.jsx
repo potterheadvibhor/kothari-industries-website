@@ -35,7 +35,10 @@ function Leader({ leader, flip }) {
       }`}
     >
       {/* Portrait cut to the logo's chevron, with orange and charcoal bars */}
-      <div className={`relative mx-auto w-full max-w-sm ${flip ? 'lg:order-2' : ''}`}>
+      <div
+        data-reveal={flip ? 'right' : 'left'}
+        className={`relative mx-auto w-full max-w-sm ${flip ? 'lg:order-2' : ''}`}
+      >
         <div
           className="absolute inset-0 -translate-x-3 bg-brand [clip-path:polygon(34%_0,100%_0,100%_50%,0_50%)]"
           aria-hidden="true"
@@ -47,21 +50,19 @@ function Leader({ leader, flip }) {
         <img
           src={img(leader.photo)}
           alt={leader.name}
-          width="624"
-          height="827"
           loading="lazy"
-          className="relative aspect-[3/4] w-full object-cover object-top [clip-path:polygon(34%_0,100%_0,100%_100%,34%_100%,0_50%)]"
+          className={`relative w-full object-cover object-top ${leader.square ? 'aspect-square' : 'aspect-[3/4]'} [clip-path:polygon(34%_0,100%_0,100%_100%,34%_100%,0_50%)]`}
         />
       </div>
 
       <div>
         <Heading as="h3" lines={leader.headline} />
-        <div className="mt-6 flex max-w-[65ch] flex-col gap-4 text-slate-soft">
+        <div data-reveal className="mt-6 flex max-w-[65ch] flex-col gap-4 text-slate-soft">
           {leader.paragraphs.map((p) => (
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
         </div>
-        <p className="mt-6 border-l-4 border-brand pl-4">
+        <p data-reveal data-delay="200" className="mt-6 border-l-4 border-brand pl-4">
           <span className="display block text-3xl text-slate">{leader.name}</span>
           <span className="block text-brand-dark">{leader.role}</span>
         </p>
@@ -73,7 +74,7 @@ function Leader({ leader, flip }) {
 export default function About() {
   return (
     <>
-      <PageHeader lines={about.headline} />
+      <PageHeader lines={about.headline} image="photos/cranes.webp" />
 
       <div className="border-b border-line bg-white">
         <nav aria-label="On this page" className="wrap flex flex-wrap gap-2 py-4">
@@ -94,22 +95,29 @@ export default function About() {
       <section id="story" className="wrap scroll-mt-40 py-16">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-16">
           <div>
-            <h2 className="display text-4xl text-slate md:text-5xl">Our story</h2>
-            <div className="mt-5 flex max-w-[65ch] flex-col gap-5 text-lg text-slate-soft">
+            <h2 data-reveal className="display text-4xl text-slate md:text-5xl">Our story</h2>
+            <div data-reveal data-delay="100" className="mt-5 flex max-w-[65ch] flex-col gap-5 text-lg text-slate-soft">
               {about.paragraphs.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
             </div>
           </div>
           <div>
-            <h2 className="display text-4xl text-slate md:text-5xl">
+            <h2 data-reveal className="display text-4xl text-slate md:text-5xl">
               A journey shaped by our people
             </h2>
             <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3">
-              {stats.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse justify-end border-l-4 border-brand pl-4">
+              {stats.map((s, i) => (
+                <div
+                  key={s.label}
+                  data-reveal
+                  data-delay={String((i % 3) * 100)}
+                  className="flex flex-col-reverse justify-end border-l-4 border-brand pl-4"
+                >
                   <dt className="text-[0.95rem] text-slate-soft">{s.label}</dt>
-                  <dd className="display text-5xl tabular-nums text-slate">{s.value}</dd>
+                  <dd data-count className="display text-5xl tabular-nums text-slate">
+                    {s.value}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -120,18 +128,18 @@ export default function About() {
       {/* Mission, vision and values */}
       <section id="values" className="relative isolate scroll-mt-40 bg-slate-deep">
         <img
-          src={img('photos/flyover.webp')}
+          src={img('photos/seedling.webp')}
           alt=""
           loading="lazy"
-          className="absolute inset-0 -z-10 size-full object-cover opacity-25"
+          className="absolute inset-0 -z-10 size-full object-cover opacity-60"
         />
         <div className="wrap py-16 md:py-20">
           <div className="grid gap-px bg-line md:grid-cols-2">
             {[
               ['Mission', about.mission],
               ['Vision', about.vision],
-            ].map(([title, text]) => (
-              <div key={title} className="bg-white p-7 md:p-9">
+            ].map(([title, text], i) => (
+              <div key={title} data-reveal data-delay={String(i * 150)} className="bg-white p-7 md:p-9">
                 <h2 className="display inline-block bg-blue px-3 pb-0.5 pt-2 text-3xl text-white">
                   {title}
                 </h2>
@@ -146,8 +154,8 @@ export default function About() {
             className="mt-14"
           />
           <ul className="mt-8 grid gap-px bg-white/25 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((v) => (
-              <li key={v.name} className="bg-slate-deep/90 p-7">
+            {values.map((v, i) => (
+              <li key={v.name} data-reveal data-delay={String((i % 3) * 100)} className="bg-slate-deep/85 p-7 backdrop-blur-sm">
                 <h3 className="display text-3xl text-brand">{v.name}</h3>
                 <p className="mt-2 text-white/85">{v.text}</p>
               </li>
@@ -172,6 +180,7 @@ export default function About() {
             {timeline.map((t, i) => (
               <li
                 key={t.year}
+                data-reveal="left"
                 className="relative grid gap-x-8 gap-y-1 pb-7 pl-7 last:pb-0 md:grid-cols-[11rem_minmax(0,1fr)]"
               >
                 <span
@@ -202,15 +211,15 @@ export default function About() {
       <section id="team" className="wrap scroll-mt-40 py-16 md:py-20">
         <Heading lines={['Behind every achievement', 'is a team that cares.']} />
         <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
-          {team.map((p) => (
-            <li key={p.name}>
+          {team.map((p, i) => (
+            <li key={p.name} data-reveal data-delay={String((i % 4) * 100)}>
               <img
                 src={img(p.photo)}
                 alt=""
-                width="420"
-                height="467"
+                width="336"
+                height="347"
                 loading="lazy"
-                className="chamfer-deep aspect-[9/10] w-full bg-paper object-cover object-top"
+                className="chamfer aspect-[9/10] w-full bg-paper object-cover object-top"
               />
               <h3 className="display mt-3 text-2xl font-medium leading-none text-slate">{p.name}</h3>
               <p className="mt-1 text-[0.95rem] text-slate-soft">{p.role}</p>
@@ -223,14 +232,14 @@ export default function About() {
       <section id="vision-2030" className="scroll-mt-40 bg-slate-deep text-white">
         <div className="wrap py-16 md:py-20">
           <Heading lines={vision2030.headline} onDark />
-          <p className="mt-5 max-w-[70ch] text-lg text-white/85">{vision2030.text}</p>
+          <p data-reveal className="mt-5 max-w-[70ch] text-lg text-white/85">{vision2030.text}</p>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <h3 className="display text-3xl">Major objectives for 2030 business strategy</h3>
               <ul className="mt-5 flex flex-col gap-3">
-                {vision2030.objectives.map((o) => (
-                  <li key={o} className="chamfer bg-white py-4 pl-5 pr-10 font-medium text-slate">
+                {vision2030.objectives.map((o, i) => (
+                  <li key={o} data-reveal="left" data-delay={String(i * 100)} className="chamfer bg-white py-4 pl-5 pr-10 font-medium text-slate">
                     {o}
                   </li>
                 ))}
@@ -239,10 +248,10 @@ export default function About() {
             <div>
               <h3 className="display text-3xl">Vision 2030: our strategic targets</h3>
               <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-7">
-                {vision2030.targets.map((t) => (
-                  <div key={t.label} className="flex flex-col border-t-2 border-white/40 pt-3">
+                {vision2030.targets.map((t, i) => (
+                  <div key={t.label} data-reveal data-delay={String(i * 100)} className="flex flex-col border-t-2 border-white/40 pt-3">
                     <dt className="order-2 font-semibold">{t.label}</dt>
-                    <dd className="display order-1 text-6xl tabular-nums text-brand">{t.value}</dd>
+                    <dd data-count className="display order-1 text-6xl tabular-nums text-brand">{t.value}</dd>
                     <dd className="order-3 text-[0.95rem] text-white/75">{t.text}</dd>
                   </div>
                 ))}
@@ -254,23 +263,34 @@ export default function About() {
 
       {/* Community */}
       <section id="community" className="wrap scroll-mt-40 py-16 md:py-20">
-        <Heading lines={csr.headline} />
-        <div className="mt-6 flex max-w-[65ch] flex-col gap-5 text-lg text-slate-soft">
-          {csr.paragraphs.map((p) => (
-            <p key={p.slice(0, 24)}>{p}</p>
-          ))}
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+          <div>
+            <Heading lines={csr.headline} />
+            <div data-reveal className="mt-6 flex max-w-[65ch] flex-col gap-5 text-lg text-slate-soft">
+              {csr.paragraphs.map((p) => (
+                <p key={p.slice(0, 24)}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <img
+            data-reveal="right"
+            src={img('photos/planting.webp')}
+            alt="Hands planting a sapling in fresh soil"
+            loading="lazy"
+            className="chamfer aspect-[4/3] w-full object-cover"
+          />
         </div>
-        <h3 className="display mt-12 text-3xl text-slate md:text-4xl">
+        <h3 data-reveal className="display mt-12 text-3xl text-slate md:text-4xl">
           Touching lives, building futures
         </h3>
         <ul className="mt-6 grid gap-6 md:grid-cols-3">
-          {csr.initiatives.map((c) => (
-            <li key={c.name} className="flex flex-col bg-paper">
+          {csr.initiatives.map((c, i) => (
+            <li key={c.name} data-reveal data-delay={String(i * 150)} className="flex flex-col bg-paper">
               <img
                 src={img(c.image)}
                 alt=""
-                width="600"
-                height="375"
+                width="352"
+                height="219"
                 loading="lazy"
                 className="chamfer aspect-[8/5] w-full object-cover"
               />

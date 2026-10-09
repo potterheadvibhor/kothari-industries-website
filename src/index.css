@@ -38,6 +38,8 @@ html {
 
 body {
   margin: 0;
+  /* side-entering animations must never make the page scroll sideways */
+  overflow-x: clip;
   background: var(--color-white);
   color: var(--color-slate);
   font-family: var(--font-sans);
@@ -157,5 +159,136 @@ h3 {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* ---- Motion (driven by src/lib/motion.js) ----------------------------------
+   Hidden states only apply under html.motion, which is set only when
+   JavaScript runs and the visitor has not asked for reduced motion. */
+
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* room for Teko's tall caps and descenders inside the mask */
+  padding-block: 0.08em 0.02em;
+  margin-block: -0.08em -0.02em;
+}
+.word {
+  display: inline-block;
+}
+.motion [data-split] .word {
+  transform: translateY(105%);
+  transition: transform 0.75s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.motion [data-split].is-in .word {
+  transform: none;
+}
+
+.motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.motion [data-reveal='left'] {
+  transform: translateX(-36px);
+}
+.motion [data-reveal='right'] {
+  transform: translateX(36px);
+}
+.motion [data-reveal='zoom'] {
+  transform: scale(0.94);
+}
+.motion [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+.motion [data-delay='100'] { transition-delay: 100ms; }
+.motion [data-delay='200'] { transition-delay: 200ms; }
+.motion [data-delay='300'] { transition-delay: 300ms; }
+.motion [data-delay='400'] { transition-delay: 400ms; }
+.motion [data-delay='500'] { transition-delay: 500ms; }
+.motion [data-delay='600'] { transition-delay: 600ms; }
+
+/* Slow drift on page-top photos */
+@keyframes kenburns {
+  from { transform: scale(1.12) translateX(-1.5%); }
+  to { transform: scale(1) translateX(0); }
+}
+.motion .kenburns {
+  animation: kenburns 9s ease-out both;
+}
+
+/* Hero: an orange bar sweeps across under the first word */
+@keyframes sweep {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.motion .sweep {
+  transform-origin: left;
+  animation: sweep 0.7s 0.15s cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+/* Clients marquee */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-row {
+  display: flex;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+}
+.marquee-item {
+  white-space: nowrap;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  padding: 0.6rem 1.1rem 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--color-slate);
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* WhatsApp button: a soft ring every few seconds */
+@keyframes wa-ring {
+  0% { box-shadow: 0 0 0 0 rgb(37 211 102 / 0.55), 0 6px 18px rgb(0 0 0 / 0.28); }
+  70%, 100% { box-shadow: 0 0 0 16px rgb(37 211 102 / 0), 0 6px 18px rgb(0 0 0 / 0.28); }
+}
+.wa-pulse {
+  animation: wa-ring 2.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+  }
+  .marquee-track {
+    width: auto;
+    animation: none;
+  }
+  .marquee-row {
+    flex-wrap: wrap;
+  }
+  .marquee-row[aria-hidden] {
+    display: none;
   }
 }

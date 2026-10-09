@@ -5,11 +5,11 @@ export default function Projects() {
   return (
     <>
       {/* Page top over the brochure's bridge photo */}
-      <div className="relative isolate bg-slate-deep">
+      <div className="relative isolate overflow-hidden bg-slate-deep">
         <img
           src={img('photos/bridge.webp')}
           alt=""
-          className="absolute inset-0 -z-10 size-full object-cover opacity-40"
+          className="kenburns absolute inset-0 -z-10 size-full object-cover opacity-45"
         />
         <div className="wrap py-14 md:py-20">
           <Heading
@@ -18,7 +18,7 @@ export default function Projects() {
             onDark
             className="text-[clamp(3rem,8vw,5.5rem)]"
           />
-          <p className="mt-4 max-w-2xl text-lg text-white/85">
+          <p data-reveal data-delay="300" className="mt-4 max-w-2xl text-lg text-white/85">
             Refineries, steel and power plants, railways and expressways. These are some of the
             sites our products have gone into, and what we supplied to each.
           </p>
@@ -27,13 +27,13 @@ export default function Projects() {
 
       <section className="wrap py-16">
         <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-          {projects.map((p) => (
-            <li key={p.name}>
+          {projects.map((p, i) => (
+            <li key={p.name} data-reveal data-delay={String((i % 4) * 100)}>
               <img
                 src={img(p.image)}
                 alt=""
-                width="600"
-                height="522"
+                width="237"
+                height="216"
                 loading="lazy"
                 className="chamfer aspect-[4/3] w-full object-cover"
               />
@@ -60,12 +60,12 @@ export default function Projects() {
               {nalJal.stats.map((s) => (
                 <div key={s.label} className="flex flex-col-reverse justify-end border-l-4 border-white pl-4">
                   <dt>{s.label}</dt>
-                  <dd className="display text-6xl tabular-nums md:text-7xl">{s.value}</dd>
+                  <dd data-count className="display text-6xl tabular-nums md:text-7xl">{s.value}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="mt-8 flex max-w-[65ch] flex-col gap-4 bg-white p-6 text-slate md:p-8">
+            <div data-reveal className="mt-8 flex max-w-[65ch] flex-col gap-4 bg-white p-6 text-slate md:p-8">
               {nalJal.paragraphs.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
@@ -74,7 +74,7 @@ export default function Projects() {
 
           <ul className="grid grid-cols-2 content-start gap-3 sm:grid-cols-3 lg:grid-cols-2">
             {nalJal.photos.map((src, i) => (
-              <li key={src} className={i === 0 ? 'col-span-2 sm:col-span-1 lg:col-span-2' : ''}>
+              <li key={src} data-reveal="right" data-delay={String(i * 150)} className={i === 0 ? 'col-span-2 sm:col-span-1 lg:col-span-2' : ''}>
                 <img
                   src={img(src)}
                   alt={`Water tank structure ${i + 1} built under the Nal Jal Yojana`}
@@ -95,8 +95,8 @@ export default function Projects() {
       <section className="wrap py-16 md:py-20">
         <Heading lines={['Major industries', 'we serve.']} />
         <ul className="mt-8 grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-5">
-          {industries.map((i) => (
-            <li key={i} className="border-b border-line py-3 font-medium text-slate">
+          {industries.map((i, n) => (
+            <li key={i} data-reveal data-delay={String((n % 5) * 100)} className="border-b border-line py-3 font-medium text-slate">
               {i}
             </li>
           ))}

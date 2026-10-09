@@ -14,15 +14,16 @@ function SupplyLine({ line }) {
     <section
       id={`brand-${line.id}`}
       aria-labelledby={`brand-h-${line.id}`}
+      data-reveal
       className="scroll-mt-40 bg-paper"
     >
       <img
         src={img(line.image)}
         alt=""
-        width="720"
-        height="225"
+        width="532"
+        height="155"
         loading="lazy"
-        className="chamfer aspect-[16/5] w-full object-cover"
+        className="chamfer aspect-[7/2] w-full object-cover"
       />
       <div className="p-6">
         <h2 id={`brand-h-${line.id}`} className="display text-4xl text-slate">
@@ -54,7 +55,10 @@ export default function Brands() {
 
   return (
     <>
-      <PageHeader lines={['Authorized dealer for trusted', 'and authentic products.']}>
+      <PageHeader
+        lines={['Authorized dealer for trusted', 'and authentic products.']}
+        image="photos/tower-scaffold.webp"
+      >
         We are channel partners for Fischer, Zydex, Supreme and STP Limited, and supply pipes, pipe
         fittings, electrical goods and cables.
       </PageHeader>
@@ -81,11 +85,20 @@ export default function Brands() {
               aria-labelledby={`brand-h-${b.id}`}
               className="scroll-mt-40"
             >
-              <div className="flex flex-wrap items-baseline gap-x-4 border-b-2 border-slate pb-1">
-                <h2 id={`brand-h-${b.id}`} className="display text-5xl text-slate md:text-6xl">
-                  {b.name}
-                </h2>
-                <p className="text-brand-dark">Channel partner</p>
+              <div className="grid items-end gap-6 border-b-2 border-slate pb-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
+                <div data-reveal="left">
+                  <h2 id={`brand-h-${b.id}`} className="display text-5xl text-slate md:text-6xl">
+                    {b.name}
+                  </h2>
+                  <p className="text-brand-dark">Channel partner</p>
+                </div>
+                <img
+                  data-reveal="right"
+                  src={img(b.banner)}
+                  alt={`${b.name} products`}
+                  loading="lazy"
+                  className="chamfer aspect-[12/5] w-full object-cover"
+                />
               </div>
               <ul className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                 {b.items.map((p) => (
@@ -107,10 +120,9 @@ export default function Brands() {
               <img
                 src={img(stp.image)}
                 alt="A range of STP Limited waterproofing and construction chemical products"
-                width="720"
-                height="225"
+                data-reveal="left"
                 loading="lazy"
-                className="chamfer aspect-[16/5] w-full object-cover"
+                className="chamfer aspect-[7/2] w-full object-cover"
               />
               <div>
                 <ul className="flex flex-wrap gap-2">

@@ -63,11 +63,15 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <p className="mt-2">
-            <a className="break-all hover:underline" href={`mailto:${company.email}`}>
-              {company.email}
-            </a>
-          </p>
+          <ul className="mt-2">
+            {[company.email, company.supportEmail].map((e) => (
+              <li key={e}>
+                <a className="break-all hover:underline" href={`mailto:${e}`}>
+                  {e}
+                </a>
+              </li>
+            ))}
+          </ul>
           <p className="break-all">{company.website}</p>
         </div>
 
@@ -86,7 +90,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/15">
-        <p className="wrap py-4 text-sm text-white/60">
+        <p className="wrap py-4 pr-24 text-sm text-white/60 md:pr-28">
           © {YEAR} {company.name}, {company.group}. All rights reserved.
         </p>
       </div>
