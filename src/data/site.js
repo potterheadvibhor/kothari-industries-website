@@ -689,7 +689,7 @@ export const nav = [
   { to: '/', label: 'Home' },
   { to: '/products', label: 'Products' },
   { to: '/projects', label: 'Projects' },
-  { to: '/brands', label: 'Brands' },
+  { to: '/brands', label: 'channel partners' },
   { to: '/quality', label: 'Quality' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },

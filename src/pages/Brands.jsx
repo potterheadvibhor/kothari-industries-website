@@ -56,7 +56,7 @@ export default function Brands() {
   return (
     <>
       <PageHeader
-        lines={['Authorized dealer for trusted', 'and authentic products.']}
+        lines={['channel partners for trusted', 'and authentic products.']}
         image="photos/tower-scaffold.webp"
       >
         We are channel partners for Fischer, Zydex, Supreme and STP Limited, and supply pipes, pipe

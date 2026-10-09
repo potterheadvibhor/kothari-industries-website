@@ -225,7 +225,7 @@ export default function Home() {
       {/* Dealerships */}
       <section className="bg-paper">
         <div className="wrap py-16 md:py-20">
-          <Heading lines={['Authorized dealer for trusted', 'and authentic products.']} />
+          <Heading lines={['channel partners for trusted', 'and authentic products.']} />
           <p data-reveal className="mt-4 max-w-2xl text-slate-soft">
             Our channel partners, alongside pipes, pipe fittings, electrical goods and cables.
           </p>
